@@ -146,9 +146,10 @@ export async function exportToExcel(allHiveData) {
 // ── CSV export ────────────────────────────────────────────────────────────────
 
 export function exportToCSV(allHiveData) {
+  const BOM = '\uFEFF'; 
   const lines = [
-    `# bee·haviour export — ${new Date().toLocaleString()}`,
-    'Hive,Date,Day,Varroa (%),Varroa Status,Temperature (°C),Temp Status,Weight (kg),Weight Δ 7d,Weight Status',
+    `# bee_haviour export - ${new Date().toLocaleString()}`,
+    'Hive,Date,Day,Varroa (%),Varroa Status,Temperature (\u2103),Temp Status,Weight (kg),Weight Diff (7d),Weight Status',
     '',
   ]
 
@@ -159,6 +160,5 @@ export function exportToCSV(allHiveData) {
       lines.push([`"${h.name}"`, r.date, r.day, r.varroa, d.varroa.status.toUpperCase(), r.temperature, d.temperature.status.toUpperCase(), r.weight, d.weight.change7d, d.weight.status.toUpperCase()].join(','))
     })
   })
-
-  saveBlob(new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' }), `bee-haviour-${new Date().toISOString().split('T')[0]}.csv`)
+  saveBlob(new Blob([BOM + lines.join('\n')], { type: 'text/csv;charset=utf-8;' }), `bee-haviour-${new Date().toISOString().split('T')[0]}.csv`)
 }
