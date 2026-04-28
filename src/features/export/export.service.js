@@ -52,9 +52,9 @@ function styleHeader(row) {
 
 function styleData(row, even) {
   row.height = 18
-  row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: even ? C.BG : C.BG_CARD } }
+  //row.fill = { type: 'pattern', pattern: 'solid' }
   row.eachCell((cell) => {
-    if (!cell.font?.name) cell.font = { name: 'Arial', size: 10, color: { argb: C.CREAM } }
+    if (!cell.font?.name) cell.font = { name: 'Arial', size: 10, color: { argb: C.BG_CARD } }
     cell.alignment = { vertical: 'middle' }
     cell.border = { bottom: { style: 'hair', color: { argb: 'FF3A2010' } } }
   })
