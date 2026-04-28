@@ -1,0 +1,62 @@
+/* src/styles/globals.css
+   Only contains things Tailwind cannot express:
+   - Google Fonts import
+   - Custom scrollbar
+   - body::before honeycomb texture (pseudo-element)
+   - SVG animation keyframes referenced inline
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #201305; }
+::-webkit-scrollbar-thumb { background: #c8922a; border-radius: 3px; }
+
+/* ── Honeycomb background texture ──────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpolygon points='28,2 54,16 54,48 28,62 2,48 2,16' fill='none' stroke='rgba(200,146,42,0.045)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 56px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Fluid typography layer ─────────────────────────
+   Tailwind generates static rem sizes. We layer fluid
+   clamp() sizes on top via custom properties so both
+   systems can coexist cleanly.                        */
+@layer utilities {
+  .text-fluid-xs   { font-size: clamp(0.625rem, 0.85vw, 0.75rem); }
+  .text-fluid-sm   { font-size: clamp(0.75rem,  1vw,    0.875rem); }
+  .text-fluid-base { font-size: clamp(0.8rem,   1.1vw,  0.9375rem); }
+  .text-fluid-md   { font-size: clamp(0.9rem,   1.3vw,  1.125rem); }
+  .text-fluid-lg   { font-size: clamp(1.1rem,   1.6vw,  1.375rem); }
+  .text-fluid-xl   { font-size: clamp(1.375rem, 2vw,    1.75rem); }
+  .text-fluid-hero { font-size: clamp(2.375rem, 3.5vw,  3.5rem); }
+
+  /* Border colours — Tailwind opacity modifier doesn't work cleanly with custom rgba */
+  .border-subtle { border-color: rgba(200,146,42,0.12); }
+  .border-medium { border-color: rgba(200,146,42,0.22); }
+  .border-strong { border-color: rgba(200,146,42,0.38); }
+
+  /* Card accent bar — top gradient stripe */
+  .accent-ok      { background: linear-gradient(90deg,#5d9e4e,transparent); }
+  .accent-caution { background: linear-gradient(90deg,#c89820,transparent); }
+  .accent-warn    { background: linear-gradient(90deg,#d94e22,transparent); }
+
+  /* Status badge backgrounds */
+  .bg-status-ok      { background: rgba(93,158,78,0.10); }
+  .bg-status-caution { background: rgba(200,152,32,0.10); }
+  .bg-status-warn    { background: rgba(217,78,34,0.10); }
+
+  /* Notification row backgrounds */
+  .bg-notif-ok      { background: rgba(93,158,78,0.06); }
+  .bg-notif-caution { background: rgba(200,152,32,0.06); }
+  .bg-notif-warn    { background: rgba(217,78,34,0.06); }
+}
