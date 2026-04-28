@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # bee·haviour v2 — Hive Intelligence Dashboard
 
 A production-ready React + Vite dashboard for monitoring beehive health metrics powered by a Raspberry Pi. Refactored to modern best practices.
@@ -184,3 +185,6 @@ Coverage targets:
 npm install @tanstack/react-query @tanstack/react-query-devtools zustand
 npm install -D tailwindcss postcss autoprefixer vitest @vitest/ui @vitest/coverage-v8 @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom eslint eslint-plugin-react eslint-plugin-react-hooks prettier
 ```
+=======
+# bee_haviour
+>>>>>>> dc0589a47c00a1787aa09d8a9b86fa04bd4e1074
