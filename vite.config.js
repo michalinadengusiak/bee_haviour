@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
-  base:'/bee_haviour/',
+  base:'/bee-haviour-frontend/',
   server: { port: 3000, open: true },
   test: {
     globals: true,
